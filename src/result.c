@@ -27,6 +27,10 @@ SOFTWARE.
 
 #include "result_utils.h"
 
+/** Flag for testing public macros that call exit() */
+int g_is_exit_called;
+/** Flag for testing public macros that return from the caller */
+int g_is_return_called;
 /** Buffer to store the generic result structs in. */
 res_t g_res_buff[RES_BUFF_SIZE];
 /** The number of currently active result objects. */

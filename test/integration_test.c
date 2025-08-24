@@ -2,8 +2,6 @@
 
 TYPEDEF_RES(float);
 
-int g_is_return_called = 0;
-int g_is_exit_called = 0;
 
 RES(float) divide(int dividend, int divisor) {
 	if (!divisor) return ERR(float, "Divisor mustn't be 0.");

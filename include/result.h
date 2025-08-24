@@ -32,12 +32,10 @@ SOFTWARE.
 #include <stdalign.h>
 #include <stdlib.h>
 
-#ifdef TEST
 /** Flag for testing macros that call exit() */
 extern int g_is_exit_called;
 /** Flag for testing macros that return from the caller */
 extern int g_is_return_called;
-#endif
 
 /** Shorthand for passing error information to functions */
 #define ERRINFO\
