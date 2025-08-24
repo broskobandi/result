@@ -61,7 +61,7 @@ test: CPPFLAGS += -DTEST
 test: $(TEST_EXE)
 	./$<
 
-doc: $(INC) $(INC_PRIV) $(SRC) $(TEST_SRC) $(TEST_MAIN) $(TEST_INC_PRIV)
+doc: $(INC) $(INC_PRIV) $(SRC)
 	doxygen
 
 clean:
