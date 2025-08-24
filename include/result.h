@@ -63,7 +63,7 @@ extern int g_is_return_called;
 	res_##T##_ok(value, ERRINFO)
 
 #ifdef TEST
-#define UNW_OR_RET(T, res, out_param, RT)\
+#define TRY(T, res, out_param, RT)\
 	do {\
 		if (res_##T##_get_ok((res), (out_param), ERRINFO) != 0) {\
 			res_##RT##_t return_res = res_##RT##_err_from((res).id, ERRINFO);\
@@ -80,7 +80,7 @@ extern int g_is_return_called;
  * \param out_param Pointer to the variable to copy the OK value into.
  * \param RT The type of result the caller is expected to return.
  * */
-#define UNW_OR_RET(T, res, out_param, RT)\
+#define TRY(T, res, out_param, RT)\
 	do {\
 		if (res_##T##_get_ok((res), (out_param), ERRINFO) != 0) {\
 			res_##RT##_t return_res = res_##RT##_err_from((res).id, ERRINFO);\
@@ -91,7 +91,7 @@ extern int g_is_return_called;
 #endif
 
 #ifdef TEST
-#define UNW_OR_EXT(T, res, out_param)\
+#define UNW(T, res, out_param)\
 	do {\
 		if (res_##T##_get_ok((res), (out_param), ERRINFO) != 0) {\
 			res_##T##_print_err((res), ERRINFO);\
@@ -105,7 +105,7 @@ extern int g_is_return_called;
  * \param res The result object.
  * \param out_param Pointer to the variable to copy the OK value into.
  * */
-#define UNW_OR_EXT(T, res, out_param)\
+#define UNW(T, res, out_param)\
 	do {\
 		if (res_##T##_get_ok((res), (out_param), ERRINFO) != 0) {\
 			res_##T##_print_err((res), ERRINFO);\
@@ -120,7 +120,7 @@ extern int g_is_return_called;
 	res_void_ok(ERRINFO)
 
 #ifdef TEST
-#define UNW_OR_RET_VOID(res, RT)\
+#define TRY_VOID(res, RT)\
 	do {\
 		if (res_void_get_ok((res), ERRINFO) != 0) {\
 			res_##RT##_t return_res = res_##RT##_err_from((res).id, ERRINFO);\
@@ -134,7 +134,7 @@ extern int g_is_return_called;
  * \param res The result object.
  * \param RT The type of result the caller is expected to return.
  * */
-#define UNW_OR_RET_VOID(res, RT)\
+#define TRY_VOID(res, RT)\
 	do {\
 		if (res_void_get_ok((res), ERRINFO) != 0) {\
 			res_##RT##_t return_res = res_##RT##_err_from((res).id, ERRINFO);\
@@ -145,7 +145,7 @@ extern int g_is_return_called;
 #endif
 
 #ifdef TEST
-#define UNW_OR_EXT_VOID(res)\
+#define UNW_VOID(res)\
 	do {\
 		if (res_void_get_ok((res), ERRINFO) != 0) {\
 			res_void_print_err((res), ERRINFO);\
@@ -157,7 +157,7 @@ extern int g_is_return_called;
  * the result object is in ERROR state.
  * \param res The result object.
  * */
-#define UNW_OR_EXT_VOID(res)\
+#define UNW_VOID(res)\
 	do {\
 		if (res_void_get_ok((res), ERRINFO) != 0) {\
 			res_void_print_err((res), ERRINFO);\
