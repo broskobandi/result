@@ -3,6 +3,7 @@ PROJECT := result
 CC := $(shell command -v clang || command -v gcc)
 CFLAGS := -Wall -Wextra -Werror -Wconversion -Wunused-result
 CPPFLAGS := -Isrc -Iinclude
+LDFLAGS := -pthread
 
 # Dirs
 BUILD_DIR := build
@@ -37,7 +38,7 @@ $(LIB_A): $(OBJ) | $(BUILD_DIR)
 	ar rcs $@ $^
 
 $(LIB_SO): $(OBJ) | $(BUILD_DIR)
-	$(CC) -shared $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	$(CC) -shared $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_PRIV) $(INC) | $(OBJ_DIR)
 	bear -- $(CC) -c -fPIC $(CFLAGS) $(CPPFLAGS) $< -o $@
@@ -46,7 +47,7 @@ $(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.c $(TEST_INC_PRIV) $(INC_PRIV) $(INC) | $(TES
 	bear -- $(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 $(TEST_EXE): $(TEST_MAIN) $(TEST_OBJ) $(OBJ) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(BUILD_DIR):
 	mkdir -p $@
