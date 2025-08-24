@@ -217,7 +217,7 @@ typedef struct res_err_info {
  * \param size The size of the data to be stored.
  * \param err_info The error information to be used on failure. 
  * \return A unique id to initialize a new instance of a result struct with. */
-size_t res_generic_ok(void *value, size_t alignment, size_t size, res_err_info_t err_info);
+size_t res_generic_ok(const void *value, size_t alignment, size_t size, res_err_info_t err_info);
 /** Creates a new result object with ERROR state.
  * \param msg The error message.
  * \param err_info Additional error information.

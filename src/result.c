@@ -54,7 +54,7 @@ int g_is_error_printed = 0;
  * \param size The size of the data to be stored.
  * \param err_info The error information to be used on failure. 
  * \return A unique id to initialize a new instance of a result struct with. */
-size_t res_generic_ok(void *value, size_t alignment, size_t size, res_err_info_t err_info) {
+size_t res_generic_ok(const void *value, size_t alignment, size_t size, res_err_info_t err_info) {
 	err_t err = {.err_info = err_info};
 	pthread_mutex_lock(&g_mutex);
 	if (
