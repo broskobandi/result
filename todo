@@ -1,0 +1,1 @@
+See if _Thread_safe could be used instead of mutex locks
