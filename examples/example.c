@@ -22,18 +22,18 @@ RES(void) call_divide(int dividend, int divisor) {
 	 * variable through an out argument.
 	 * Return from the current function with the appropriate 
 	 * result type and error information on failure. */
-	UNW_OR_RET(float, divide(dividend, divisor), &quotient, void);
+	TRY(float, divide(dividend, divisor), &quotient, void);
 	return OK_VOID();
 }
 
 int main(void) {
 	/* Check if the function ran successfully or exit from the program 
 	 * on failure printing the relevant error information automatically. */
-	UNW_OR_EXT_VOID(call_divide(10, 5));
+	UNW_VOID(call_divide(10, 5));
 
 	float quotient = 0.0f;
 	/* Save the return value directly into a variable 
 	 * or exit the program after printing the relevant error value. */
-	UNW_OR_EXT(float,  divide(10, 5), &quotient);
+	UNW(float,  divide(10, 5), &quotient);
 	return 0;
 }
